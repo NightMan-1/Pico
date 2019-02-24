@@ -1,0 +1,263 @@
+img {max-width: 100%;}
+pre {border-radius: 0;}
+
+/************************************************************/
+
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+	position: relative;
+	min-height: 1px;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+.col-xs-15 {
+	width: 20%;
+	float: left;
+}
+@media (min-width: 768px) {
+	.col-sm-15 {
+		width: 20%;
+		float: left;
+	}
+}
+@media (min-width: 992px) {
+	.col-md-15 {
+		width: 20%;
+		float: left;
+	}
+}
+@media (min-width: 1200px) {
+	.col-lg-15 {
+		width: 20%;
+		float: left;
+	}
+}
+
+/************************************************************/
+
+.login-form {
+	max-width: 330px;
+	padding: 15px;
+	margin: 40px auto;
+}
+.login-form .form-login-heading,
+.login-form .checkbox {
+	margin-bottom: 10px;
+}
+.login-form .checkbox {
+	font-weight: normal;
+}
+.login-form .form-control {
+	position: relative;
+	height: auto;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 10px;
+	font-size: 16px;
+}
+.login-form .form-control:focus {
+	z-index: 2;
+}
+.login-form input[type="email"] {
+	margin-bottom: -1px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+.login-form input[type="password"] {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+/************************************************************/
+/* http://jsfiddle.net/Fh47n/ */
+.tree ul:first-child{
+	padding: 0;
+	margin-top: -1em;
+	margin-left: -0.5em;
+}
+
+.tree li {
+	margin: 0px 0;
+	list-style-type: none;
+	position: relative;
+	padding: 1em 0.5em 0 0.5em;
+	transition: all 0.5s;
+}
+
+.tree li::before{
+	content: '';
+	position: absolute;
+	top: 0;
+	width: 1px;
+	height: 100%;
+	right: auto;
+	left: -1em;
+	border-left: 1px solid #ccc;
+	bottom: 2em;
+}
+.tree li::after{
+	content: '';
+	position: absolute;
+	top: 1.9em;
+	width: 1.5em;
+	height: 1.3em;
+	right: auto;
+	left: -1em;
+	border-top: 1px solid #ccc;
+}
+.tree li span{
+	display: inline-block;
+	border: 1px solid #ccc;
+	padding: 0.3em 0.8em;
+	text-decoration: none;
+	color: #666;
+	border-radius: 0.3em;
+	transition: all 0.5s;
+	background: #FFF;
+
+}
+
+/*Remove connectors before root*/
+.tree > ul > li::before, .tree > ul > li::after{
+	border: 0;
+}
+/*Remove connectors after last child*/
+.tree li:last-child::before{
+	height: 30px;
+}
+
+/*Time for some hover effects*/
+/*We will apply the hover effect the the lineage of the element also*/
+.tree li span:hover, .tree li span:hover+ul li span {
+	background: #c8e4f8; color: #000; border: 1px solid #94a0b4;
+	cursor: default;
+}
+/*Connector styles on hover*/
+.tree li span:hover+ul li::after,
+.tree li span:hover+ul li::before,
+.tree li span:hover+ul::before,
+.tree li span:hover+ul ul::before{
+	border-color:  #94a0b4;
+}
+
+/************************************************************/
+.article-control{
+	display: none;
+	font-size: 0.9em;
+	font-style: italic;
+	margin-top: 0.3em;
+}
+.article-control a{
+	margin-right: 0.7em;
+	display: inline-block;
+}
+.article-control-line td{
+	height: 3.2em;
+}
+.article-control-line:hover .article-control{
+	display: block;
+}
+/************************************************************/
+/* jQuery Sortable */
+/* http://johnny.github.io/jquery-sortable/ */
+
+body.dragging, body.dragging * {
+	cursor: move !important;
+}
+
+.dragged {
+	position: absolute;
+	top: 0;
+	opacity: 0.5;
+	z-index: 2000;
+}
+
+ol.vertical {
+	margin: 0 0 9px 0;
+	min-height: 10px;
+	padding-left: 0;
+}
+ol.vertical i.fa{
+	color: #000;
+}
+
+ol.vertical .link{
+	display: block;
+	width: 100%;
+}
+ol.vertical .link:hover .control{
+	display: inline-block;
+}
+
+ol.vertical li .control{
+	font-style: italic;
+	display: none;
+	margin-left: 1em;
+	font-size: 0.9em;
+	transition: all 0.5s ease 0s;
+}
+/*
+ol.vertical li:hover > .control {
+	display: inline-block;
+}
+*/
+ol.vertical .control i{
+	margin-left: 0.7em;
+	margin-right: 0.1em;
+}
+
+ol.vertical li {
+	display: block;
+	margin: 5px;
+	padding: 5px;
+	border: 1px solid #cccccc;
+	/*color: #0088cc;*/
+	background: #f5f5f5;
+}
+
+ol.vertical li.placeholder {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+ol.vertical li.placeholder:before {
+	position: absolute;
+	content: "";
+	width: 0;
+	height: 0;
+	margin-top: -5px;
+	left: -5px;
+	top: -4px;
+	border: 5px solid transparent;
+	border-left-color: red;
+	border-right: none;
+}
+
+ol.vertical {
+	list-style-type: none;
+}
+
+ol.vertical li.highlight {
+	background: #333333;
+	color: #999999;
+}
+
+ol.vertical, ol.vertical ol {
+	border: 1px solid #f5f5f5;
+}
+
+ol.vertical.active, ol.vertical ol.active {
+	border: 1px solid #333333;
+}
+
+ol.vertical li {
+	cursor: pointer;
+}
+

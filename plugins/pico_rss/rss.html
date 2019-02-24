@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>{{ site_title }}</title>
+	<link href="{{ base_url }}"/>
+	<link href="{{ base_url }}/feed/" rel="self" />
+	<updated>{{ atomcreatetime }}</updated>
+	<author>
+		<name>{{ site_author }}</name>
+	</author>
+	<id>urn:uuid:{{ uuid }}</id>
+
+	{% for page in rss_pages %}
+	<entry>
+		<title>{{ page.title }}</title>
+		<link href="{{ page.url }}"/>
+		<id>{{ page.url }}</id>
+		<updated>{{ page.date }}</updated>
+		<summary>{{ page.excerpt }}</summary>
+		<content type="html">
+			{{ page.content }}
+		</content>
+	</entry>
+	{% endfor %}
+</feed>

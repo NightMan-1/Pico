@@ -1,0 +1,27 @@
+{%include "head.twig" %}
+{% if meta.thumbbig != '' %}
+<img src="{{ meta.thumbbig }}" class="blog-page-thumb-big">
+{% endif %}
+<div class="blog-page-date"><span class="text-primary"><i class="fa fa-clock-o"></i> {{ meta.date }}</span></div>
+<h1 class="blog-page-title">{{ meta.title }}</h1>
+{{ content }}
+<div class="clearfix"></div>
+<br>
+{% if images %}
+<div class="image-gallery">
+    {% for image in images %}
+    <div class="image-gallery-item {{ article.album }}">
+        <a href="{{ image.url }}" class="swipebox"><img class="lazy" data-original="{{ image.thumb }}" alt="" width="{{ image.w }}" height="{{ image.h }}" src="{{ SITEURL }}/images/00000000.png"></a>
+    </div>
+
+    {% endfor %}
+</div>
+
+{% endif %}
+
+<div class="clearfix"></div>
+
+<div class="clearfix"></div>
+<br>
+<a href="./" class="btn btn-primary"><i class="fa fa-arrow-left"></i> back to Blog</a>
+{%include "footer.twig" %}

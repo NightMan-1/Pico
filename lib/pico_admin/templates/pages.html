@@ -1,0 +1,165 @@
+{%include "@admin/head.twig" %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="btn-group pull-right" role="group">
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addFolder"><i class="fa fa-folder"></i> Добавить раздел</button>
+            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addFile"><i class="fa fa-plus"></i> Добавить страницу</button>
+            <button type="button" class="btn btn-warning btn-sm" id="savePagesList"><i class="fa fa-plus"></i> Сохранить изменения</button>
+        </div>
+        <h1>Страницы</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="box">
+            <div class="box-body">
+                <ol class="pages-list vertical">
+                    <li data-name="index">
+                        <div class="link">
+                        <i class="fa fa-arrows"></i> &nbsp;  {# index #}
+                        <i class="fa fa fa-file-o"></i> &nbsp; {{ files_tree.title }}
+                        <span class="control">
+                            <a href="{{ files_tree.url }}" target="_blank" title="открыть" class="m-l-1"><i class="fa fa-eye"></i> перейти</a>
+                            {% if files_tree.content_type == '.html' %}
+                            <a href="{{ base_url }}/admin/edit?file={{ files_tree.file|escape }}" title="редактировать"><i class="fa fa-pencil"></i> изменить</a>
+                            {% endif %}
+                            {% if files_tree.content_type == '.md' %}
+                            <a href="{{ base_url }}/admin/md-to-html?file={{ files_tree.file|escape }}" class="text-primary"><i class="fa fa-html5"></i> MD->HTML</a>
+                            {% endif %}
+                            <a href="{{ base_url }}/admin/code?file={{ files_tree.file|escape }}" title="редактировать код"><i class="fa fa-code"></i> CODE</a>
+                            <a href="{{ base_url }}/admin/pages?delete={{ files_tree.file|escape }}" title="удалить" class="text-danger"><i class="fa fa-trash-o"></i> удалить</a>
+                        </span>
+                        </div>
+                    </li>
+
+                    {% for page in files_tree.sub %}
+                    <li data-name="{{ page.file }}">
+                        <div class="link">
+                        <i class="fa fa-arrows"></i> &nbsp;
+                        <i class="fa fa fa-{{ page.type }}-o"></i> &nbsp; {{ page.title }}
+                        <span class="control">
+                            <a href="{{ page.url }}" target="_blank" title="открыть" class="m-l-1"><i class="fa fa-eye"></i> перейти</a>
+                            {% if page.content_type == '.html' %}
+                            <a href="{{ base_url }}/admin/edit?file={{ page.file|escape }}" title="редактировать"><i class="fa fa-pencil"></i> изменить</a>
+                            {% endif %}
+                            {% if page.content_type == '.md' %}
+                            <a href="{{ base_url }}/admin/md-to-html?file={{ page.file|escape }}" class="text-primary"><i class="fa fa-html5"></i> MD->HTML</a>
+                            {% endif %}
+                            <a href="{{ base_url }}/admin/code?file={{ page.file|escape }}" title="редактировать код"><i class="fa fa-code"></i> CODE</a>
+                            <a href="{{ base_url }}/admin/pages?delete={{ page.file|escape }}" title="удалить" class="text-danger"><i class="fa fa-trash-o"></i> удалить</a>
+                        </span>
+                        </div>
+                        {% if page.type == 'folder' %}
+                            <ol>
+                                {% if page.sub %}{% for page in page.sub %}
+                                <li data-name="{{ page.file }}">
+                                    <div class="link">
+                                    <i class="fa fa-arrows"></i> &nbsp;
+                                    <i class="fa fa fa-{{ page.type }}-o"></i> &nbsp; {{ page.title }}
+                                    <span class="control">
+                                        <a href="{{ page.url }}" target="_blank" title="открыть" class="m-l-1"><i class="fa fa-eye"></i> перейти</a>
+                                        {% if page.content_type == '.html' %}
+                                        <a href="{{ base_url }}/admin/edit?file={{ page.file|escape }}" title="редактировать"><i class="fa fa-pencil"></i> изменить</a>
+                                        {% endif %}
+                                        {% if page.content_type == '.md' %}
+                                        <a href="{{ base_url }}/admin/md-to-html?file={{ page.file|escape }}" class="text-primary"><i class="fa fa-html5"></i> MD->HTML</a>
+                                        {% endif %}
+                                        <a href="{{ base_url }}/admin/code?file={{ page.file|escape }}" title="редактировать код"><i class="fa fa-code"></i> CODE</a>
+                                        <a href="{{ base_url }}/admin/pages?delete={{ page.file|escape }}" title="удалить" class="text-danger"><i class="fa fa-trash-o"></i> удалить</a>
+                                    </span>
+                                    </div>
+                                    {% if page.type == 'folder' %}
+                                    <ol>
+                                        {% if page.sub %}{% for page in page.sub %}
+                                        <li data-name="{{ page.file }}">
+                                            <div class="link">
+                                            <i class="fa fa-arrows"></i> &nbsp;
+                                            <i class="fa fa fa-{{ page.type }}-o"></i> &nbsp; {{ page.title }}
+                                            <span class="control">
+                                                <a href="{{ page.url }}" target="_blank" title="открыть" class="m-l-1"><i class="fa fa-eye"></i> перейти</a>
+                                                {% if page.content_type == '.html' %}
+                                                <a href="{{ base_url }}/admin/edit?file={{ page.file|escape }}" title="редактировать"><i class="fa fa-pencil"></i> изменить</a>
+                                                {% endif %}
+                                                {% if page.content_type == '.md' %}
+                                                <a href="{{ base_url }}/admin/md-to-html?file={{ page.file|escape }}" class="text-primary"><i class="fa fa-html5"></i> MD->HTML</a>
+                                                {% endif %}
+                                                <a href="{{ base_url }}/admin/code?file={{ page.file|escape }}" title="редактировать код"><i class="fa fa-code"></i> CODE</a>
+                                                <a href="{{ base_url }}/admin/pages?delete={{ page.file|escape }}" title="удалить" class="text-danger"><i class="fa fa-trash-o"></i> удалить</a>
+                                            </span>
+                                            </div>
+                                        </li>
+                                        {% endfor %}{% endif %}
+                                    </ol>
+                                    {% endif %}
+                                </li>
+
+                                {% endfor %}{% endif %}
+                            </ol>
+                        {% endif %}
+                    </li>
+
+
+                        {% endfor %}
+                </ol>
+
+            </div>
+        </div>
+<!-- Modal -->
+<div class="modal fade" id="addFile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <form action="{{ base_url }}/admin/new" method="post">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Создание страницы</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="pageTitle">Заголовок страницы:</label>
+                    <input type="text" class="form-control" id="pageTitle" name="pageTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="pageFileName">Имя файла:</label>
+                    <input type="text" class="form-control" id="pageFileName" name="pageFileName" required placeholder="example.html">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Создать</button>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+
+<div class="modal fade" id="addFolder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+    <form action="{{ base_url }}/admin/new" method="post">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel2">Создание раздела</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="folderTitle">Заголовок раздела:</label>
+                    <input type="text" class="form-control" id="folderTitle" name="folderTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="folderName">Имя раздела:</label>
+                    <input type="text" class="form-control" id="folderName" name="folderName" required placeholder="folder">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Создать</button>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+
+{%include "@admin/footer.twig" %}

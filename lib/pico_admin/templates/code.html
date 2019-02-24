@@ -1,0 +1,32 @@
+{%include "@admin/head.twig" %}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Редактирование страницы</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+            <div class="btn-group pull-right" role="group">
+                <a href="#" type="button" class="btn btn-success btn-sm" id="save">Сохранить</a>
+                <a href="{{ file_to_edit.url }}" class="btn btn-info btn-sm" id="open" target="_blank">Просмотреть</a>
+            </div>
+            <p>
+                <b>Имя файла:</b> <span id="file_name">{{ file_to_edit.file }}</span>
+            </p>
+            <div class="clearfix"></div>
+            <br>
+
+<pre id="code-editor" style="width:100%;height:50em;border:1px solid #e5e5e5; margin: 0;">
+{{ file_to_edit.data|e }}
+</pre>
+            <script>
+                var aceMode = '{{ file_to_edit.mode }}';
+            </script>
+
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+{%include "@admin/footer.twig" %}

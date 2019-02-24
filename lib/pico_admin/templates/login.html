@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="utf-8" />
+	<title>Pico Admin Login</title>
+
+	<link href="{{ base_url }}/lib/pico_admin/assets/css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic&subset=latin,cyrillic,cyrillic-ext' rel='stylesheet' type='text/css'>
+	<link href="{{ base_url }}/lib/pico_admin/assets/css/style.css" rel="stylesheet">
+
+	<meta name="robots" content="noindex, nofollow" />
+
+</head>
+<body>
+
+<div class="container">
+
+	<form class="login-form" method="post" action="">
+		<h2 class="form-login-heading text-center">Pico Admin Login</h2>
+		<br>
+		{% if login_error %}
+		<div class="alert alert-danger" role="alert">
+			<p class="text-center">{{ login_error }}</p>
+		</div>
+		{% endif %}
+
+		<label for="password" class="sr-only">Password</label>
+		<input type="password" id="password" class="form-control" placeholder="Password" name="password" required>
+		<button class="btn btn-lg btn-primary btn-block" type="submit"><i class="fa fa-sign-in"></i> Login</button>
+	</form>
+
+</div> <!-- /container -->
+
+
+</body>
+</html>

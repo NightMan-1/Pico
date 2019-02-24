@@ -1,0 +1,49 @@
+{%include "@admin/head.twig" %}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Шаблоны сайта</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+        {% for theme in theme_list %}
+            <div class="col-xs-12 col-sm-6 col-lg-4">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">{{ theme.general.name }}</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        {% if theme.general.thumbnail %}
+                        <img src="/{{theme.general.thumbnail}}"/>
+                        {% endif %}
+                        <div class="clearfix"></div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <b>Автор:</b> <a href="{{theme.general.url}}">{{theme.general.author}}</a><br>
+                                <b>Версия:</b> {{theme.general.version}}
+                            </div>
+                            <div class="col-sm-12 col-md-6 text-right">
+                                <a href="/admin/theme?enable={{theme.general.folder}}" class="btn btn-sm btn-success" {%if theme.general.folder == config.theme %}disabled="disabled"{% endif %} ><i class="fa fa-toggle-on"></i> включить</a>
+                            </div>
+                        </div>
+                        <br>
+                        {{theme.general.description}}
+                    </div><!-- /.box-body -->
+                </div>
+            </div>
+
+        {% endfor %}
+        </div>
+
+
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+
+
+{%include "@admin/footer.twig" %}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Контакты</title>
+    <meta name="date" content="2015-07-19 20:00" />
+    <meta name="navorder" content="999" />
+    <meta name="pagetype" content="contactform" />
+</head>
+<body>
+
+<section class="section section-center- article- animated fadeIn">
+    <div class="container">
+
+
+        <div class="{{ reCAPTCHA.success }}">
+            <br>
+            <br>
+            <div class="alert alert-info text-center">
+                <h2><b>Спасибо!</b> Сообщение отправлено.</h2>
+                <p>При необходимости, я обязательно скоро с вами свяжусь!</p>
+            </div>
+        </div>
+
+        <div class="{{ reCAPTCHA.form }}">
+
+            <h2 class="section-title">Форма обратной связи</h2>
+
+            <div class="alert alert-success {{ reCAPTCHA.info }}" role="alert">
+                <p class="text-center">Напишите мне и обязательно отвечу <i class="fa fa-smile-o"></i></p>
+            </div>
+            <div class="alert alert-danger {{ reCAPTCHA.error }}" role="alert">
+                <p class="text-center">{{ reCAPTCHA.error.message }} <i class="fa fa-frown-o"></i></p>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="well- well-sm-">
+                        <form method="post">
+                            <input type="hidden" name="form" value="pass">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <!--<label for="name">Текст письма</label>-->
+                                        <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required" placeholder="Текст письма...">{{ post.Message }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <!--<label for="name">Имя</label>-->
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="fa fa-user"></span></span>
+                                            <input type="text" class="form-control" name="name" id="name" placeholder="Ваше имя" required="required" value="{{ post.Name }}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <!--<label for="email">Email</label>-->
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="fa fa-envelope-o"></span></span>
+                                            <input type="email" class="form-control" name="email" id="email" placeholder="Ваш email" required="required" value="{{ post.Email }}" />
+                                        </div>
+                                    </div>
+
+                                    <div class="g-recaptcha" data-sitekey="{{ reCAPTCHA.siteKey }}"></div>
+                                    <script type="text/javascript"
+                                            src="//www.google.com/recaptcha/api.js?hl={{ reCAPTCHA.lang }}">
+                                    </script>
+
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary pull-right" id="btnContactUs"><i class="fa fa-envelope-o"></i> Написать</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+</section>
+
+
+</body>
+</html>
+

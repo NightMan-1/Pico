@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8" />
+    <title>Pico Admin Login</title>
+
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="{{ base_url }}/lib/pico_admin/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ base_url }}/lib/pico_admin/assets/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="{{ base_url }}/lib/pico_admin/assets/css/skins/skin-black.min.css">
+    <link rel="stylesheet" href="{{ base_url }}/lib/pico_admin/assets/css/pnotify.custom.min.css">
+    <link rel="stylesheet" href="{{ base_url }}/lib/pico_admin/assets/datepicker/bootstrap-datepicker3.min.css">
+    <link rel="stylesheet" href="{{ base_url }}/lib/pico_admin/assets/datatables/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="{{ base_url }}/lib/pico_admin/assets/css/style.css">
+
+    <!--
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic&subset=latin,cyrillic,cyrillic-ext' rel='stylesheet' type='text/css'>
+    <link href="{{ base_url }}/lib/pico_admin/assets/css/pnotify.custom.min.css" rel="stylesheet">
+    <link href="{{ base_url }}/lib/pico_admin/assets/css/style.css" rel="stylesheet">
+    -->
+    <meta name="robots" content="noindex, nofollow" />
+
+</head>
+
+<body class="hold-transition skin-black sidebar-mini">
+<div class="wrapper">
+    <header class="main-header">
+        <a href="{{ base_url }}/admin" class="logo">
+            <span class="logo-mini"><b>Pico</b></span>
+            <span class="logo-lg"><b>Pico</b> Admin</span>
+        </a>
+        <nav class="navbar navbar-static-top" role="navigation">
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- Control Sidebar Toggle Button -->
+                    <li><a href="{{ base_url }}" target="_blank" title="перейти на сайт"><i class="fa fa-external-link"></i> <span class="hidden-xs hidden-sm">Открыть сайт</span></a></li>
+                    {% if server.cache_enable_menu %}<li{% if menu == 'settings' %} class="active"{% endif %}><a href="{{ flush_cache_url }}"><i class="fa fa-recycle"></i> <span class="hidden-xs hidden-sm">Очистить кеш</span></a></li>{% endif %}
+                    <li{% if menu == 'settings' %} class="active"{% endif %}><a href="{{ base_url }}/admin/settings"><i class="fa fa-gears"></i> <span class="hidden-xs hidden-sm">Настройки</span></a></li>
+                    <li><a href="{{ base_url }}/admin/logout"><i class="fa fa-sign-out"></i> <span class="hidden-xs hidden-sm">Выход</span></a></li>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+
+        <section class="sidebar">
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu">
+                <li{% if menu == 'dashboard' %} class="active"{% endif %}><a href="{{ base_url }}/admin"><i class="fa fa-tachometer"></i> <span>Консоль</span></a></li>
+                <li class="header">Контент</li>
+                <li{% if menu == 'articles' %} class="active"{% endif %}><a href="{{ base_url }}/admin/articles"><i class="fa fa-newspaper-o"></i> <span>Записи</span></a></li>
+                <li{% if menu == 'pages' %} class="active"{% endif %}><a href="{{ base_url }}/admin/pages"><i class="fa fa-file-text-o"></i> <span>Страницы</span></a></li>
+                <li{% if menu == 'gallery' %} class="active"{% endif %}><a href="{{ base_url }}/admin/gallery"><i class="fa fa-camera"></i> <span>Фотографии</span></a></li>
+                <li{% if menu == 'files' %} class="active"{% endif %}><a href="{{ base_url }}/admin/files"><i class="fa fa-files-o"></i> <span>Файлы</span></a></li>
+                <li class="header">Общее</li>
+                <li{% if menu == 'theme' %} class="active"{% endif %}><a href="{{ base_url }}/admin/theme"><i class="fa fa-paint-brush"></i> <span>Шаблоны</span></a></li>
+                <li{% if menu == 'menu' %} class="active"{% endif %}><a href="{{ base_url }}/admin/menu"><i class="fa fa-bars"></i> <span>Навигация</span></a></li>
+                <li class="header">Служебное</li>
+                <li{% if menu == 'backup' %} class="active"{% endif %}><a href="{{ base_url }}/admin/backup"><i class="fa fa-hdd-o"></i> <span>Backup</span></a></li>
+                <li{% if menu == 'import' %} class="active"{% endif %}><a href="{{ base_url }}/admin/import"><i class="fa fa-download"></i> <span>Импорт</span></a></li>
+            </ul><!-- /.sidebar-menu -->
+
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+
+
+

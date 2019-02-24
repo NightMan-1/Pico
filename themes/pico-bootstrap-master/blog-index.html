@@ -1,0 +1,49 @@
+{%include "head.twig" %}
+
+<h1>{{ meta.title }}</h1>
+{% if page_number == 1%}
+{{ content }}
+{% endif %}
+
+<div class="blog-items">
+    {% for page in paged_pages %}
+    <div class="blog-item">
+        <div class="row">
+            {% if page.thumbsmall != '' %}
+            <div class="col-xs-12 col-md-2"><a href="{{ page.url }}" class="thumbnail"><img src="{{ page.thumbsmall }}"></a>
+            </div>
+            <div class="col-xs-12 col-md-10">
+            {% else %}
+            <div class="col-xs-12">
+            {% endif %}
+            <div class="item-date"><span class="text-primary"><i  class="fa fa-clock-o"></i> {{ page.date }}</span></div>
+            <h2 class="item-title"><a href="{{ page.url }}">{{ page.title }}</a></h2>
+            <p>{{ page.excerpt }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="text-center">
+    {% if total_pages > 1 %}
+    <nav>
+        <ul class="pagination">
+            {% if page_number > 1 %}
+            <li><a href="?PAGE=1" aria-label="First"><i class="fa fa-angle-double-left"></i>&nbsp;</a></li>
+            <li><a href="?PAGE={{page_number-1}}" aria-label="Previous"><i class="fa fa-angle-left"></i>&nbsp;</a></li>
+            {% endif %}
+            {% for page in pagination_num_links %}
+            <li{% if page.number == page_number %} class="active"{% endif %}><a href="{{page.url}}">{{page.number}}</a></li>
+            {% endfor %}
+            {% if page_number < total_pages %}
+            <li><a href="?PAGE={{page_number+1}}" aria-label="Next">&nbsp;<i class="fa fa-angle-right"></i></a></li>
+            <li><a href="?PAGE={{total_pages}}" aria-label="Last">&nbsp;<i class="fa fa-angle-double-right"></i></a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+
+
+{%include "footer.twig" %}

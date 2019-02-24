@@ -1,0 +1,59 @@
+{%include "head.twig" %}
+
+<h1 class="titlewithline">{{ meta.title }}</h1>
+{% if page_number == 1%}
+<div class="box-white">
+{{ content }}
+</div>
+{% endif %}
+
+<div class="blog">
+
+
+
+
+    {% for page in paged_pages %}
+    <div class="row">
+        <div class="col-lg-2 visible-lg"></div>
+        <div class="col-xs-12 col-lg-8">
+        <div class="blog-item">
+            {% if page.thumbsmall != '' %}
+            <a href="{{ page.url }}"><img class="img-responsive img-blog" src="{{ page.thumbsmall }}" alt="{{ page.title }}"></a>
+            {% endif %}
+            <div class="blog-content">
+                <a href="{{ page.url }}"><h3>{{ page.title }}</h3></a>
+                <div class="entry-meta">
+                    <span><i class="fa fa-clock-o"></i> {{ page.date }}</span>
+                </div>
+		<p>{{ page.excerpt }}</p>
+                <a class="btn btn-default" href="{{ page.url }}">Read More <i class="icon-angle-right"></i></a>
+            </div>
+        </div><!--/.blog-item-->
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+<div class="text-center">
+    {% if total_pages > 1 %}
+    <nav>
+        <ul class="pagination">
+            {% if page_number > 1 %}
+            <li><a href="?PAGE=1" aria-label="First"><i class="fa fa-angle-double-left"></i>&nbsp;</a></li>
+            <li><a href="?PAGE={{page_number-1}}" aria-label="Previous"><i class="fa fa-angle-left"></i>&nbsp;</a></li>
+            {% endif %}
+            {% for page in pagination_num_links %}
+            <li{% if page.number == page_number %} class="active"{% endif %}><a href="{{page.url}}">{{page.number}}</a></li>
+            {% endfor %}
+            {% if page_number < total_pages %}
+            <li><a href="?PAGE={{page_number+1}}" aria-label="Next">&nbsp;<i class="fa fa-angle-right"></i></a></li>
+            <li><a href="?PAGE={{total_pages}}" aria-label="Last">&nbsp;<i class="fa fa-angle-double-right"></i></a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+
+
+{%include "footer.twig" %}

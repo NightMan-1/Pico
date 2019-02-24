@@ -1,0 +1,77 @@
+.navbar-brand{text-transform: uppercase; color: #FFF !important;}
+
+.titlewithline { position:relative; z-index:1; overflow:hidden; text-align:center; font-weight: 600; font-size: 1.9em; line-height: 1.1em; margin: 0 0 0.5em 0; }
+.titlewithline:before, .titlewithline:after { content:''; display:inline-block; width:100%; height:1px; background:#2ECC71; z-index:-1; position:relative; vertical-align:middle; }
+.titlewithline:before { right:1em; margin:0 0 0 -100%; }
+.titlewithline:after { left:1em; margin:0 -100% 0 0; }
+
+.blog-item, .pagination, .box-white{
+    border: 1px solid #EEE;
+}
+
+.box-white{
+    background: #FFF;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom:20px;
+}
+
+.box-white :last-child{
+    margin-bottom: 0;
+}
+
+
+.image-gallery {position: relative;}
+.image-gallery-item img {max-width:100%;}
+
+/* Sticky footer styles */
+html {  position: relative;  min-height: 100%; }
+body { margin-bottom: 6em;  } /* Margin bottom by footer height */
+#footer {  position: absolute;  bottom: 0;  width: 100%;
+    height: 6em;/* Set the fixed height of the footer here */
+}
+/* end sticky footer styles */
+
+body > section {
+    padding: 2em 0 1em 0;
+}
+
+code, pre {background: #fff;}
+
+/************************************************************/
+
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.col-xs-15 {
+    width: 20%;
+    float: left;
+}
+@media (min-width: 768px) {
+    .col-sm-15 {
+        width: 20%;
+        float: left;
+    }
+}
+@media (min-width: 992px) {
+    .col-md-15 {
+        width: 20%;
+        float: left;
+    }
+}
+@media (min-width: 1200px) {
+    .col-lg-15 {
+        width: 20%;
+        float: left;
+    }
+}
+
+/************************************************************/
+

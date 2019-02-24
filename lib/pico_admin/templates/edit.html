@@ -1,0 +1,120 @@
+{%include "@admin/head.twig" %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Редактирование страницы</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+    <form method="post" action="/admin/save">
+        <input type="hidden" name="file" value="{{ current_page.file }}">
+        <pre id="defaultcontent" class="hidden">
+            {{ current_page.content|raw }}
+        </pre>
+
+        <div class="row">
+            <div class="col-xs-12 col-md-8 col-lg-9">
+                <div class="row" id="pageheaders">
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            <label for="pagetitle">Заголовок страницы (title)</label>
+                            <input type="text" class="form-control" id="pagetitle" name="title" value="{{ current_page.title }}">
+                        </div>
+                    </div>
+                    <div class="col-xs-12  col-md-6">
+                        <div class="form-group">
+                            <label for="description">Описание страницы (description)</label>
+                            <input type="text" class="form-control" id="description" name="description" value="{{ current_page.description }}">
+                        </div>
+                    </div>
+                </div>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#visual" id="link_visual" aria-controls="home" role="tab" data-toggle="tab">Визуально</a></li>
+                    <li role="presentation"><a href="#html" id="link_html" aria-controls="profile" role="tab" data-toggle="tab">HTML</a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="visual">
+                        <textarea class="form-control" rows="15" id="tinymce_editor" name="content"></textarea>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="html">
+                        <pre id="ace_editor" style="width:100%;height:50em;margin: 0;"></pre>
+                        <script>
+                            var aceMode = '{{ current_page.file_type }}';
+                        </script>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="col-xs-12 col-md-4 col-lg-3">
+                <p><b>Имя файла:</b> <span id="file_name">{{ current_page.file }}</span></p>
+                <div class="btn-group" role="group">
+                    <a href="#" type="button" class="btn btn-success" id="save"><i class="fa fa-floppy-o hidden"></i> Сохранить</a>
+                    <a href="{{ current_page.url }}" class="btn btn-info" id="open" target="_blank"><i class="fa fa-eye hidden"></i> Просмотреть</a>
+                </div>
+                <div class="clearfix"></div>
+                <br>
+                <div class="form-group">
+                    <label for="date">Дата (date)</label>
+                    <div class="input-group date">
+                        <input type="text" class="form-control" id="date" name="date" value="{{ current_page.date }}"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Меню</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="navtitle">Заголовок</label>
+                            <input type="text" class="form-control" id="navtitle" name="navtitle" value="{{ meta.navtitle }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="navhidden">Видимость</label>
+                            <input type="checkbox" class="form-control-" id="navhidden" name="navhidden" {% if meta.navhidden != 'True' %}checked{% endif %}>
+                        </div>
+                        <div class="form-group">
+                            <label for="navorder">Позиция</label>
+                            <input type="text" class="form-control" id="navorder" name="navorder" value="{{ meta.navorder }}">
+                        </div>
+                    </div><!-- /.box-body -->
+                </div>
+
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Шаблоны</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="form-group">
+                            <select class="form-control" name="template" id="template">
+                                {% if menu == 'articles' %}
+                                    {% for key,value in themeConfig.blog %}
+                                    <option value="{{key}}" {% if key == meta.template %}selected{% endif %}>{{value}}</option>
+                                    {% endfor %}
+                                {% else %}
+                                    {% for key,value in themeConfig.pages %}
+                                    <option value="{{key}}" {% if key == meta.template %}selected{% endif %}>{{value}}</option>
+                                    {% endfor %}
+                                {% endif %}
+                            </select>
+                        </div>
+                    </div><!-- /.box-body -->
+                </div>
+
+            </div>
+        </div>
+
+
+    </form>
+
+
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+
+{%include "@admin/footer.twig" %}

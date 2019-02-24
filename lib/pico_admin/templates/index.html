@@ -1,0 +1,56 @@
+{%include "@admin/head.twig" %}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Консоль сайта</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Сайт</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <p>
+                            <b>Название сайта:</b> {{ config.site_title }}<br>
+                            <b>Адрес сайта:</b> <a href="{{ config.base_url }}" target="_blank">{{ config.base_url
+                            }}</a><br>
+                            <b>Администратор:</b> <a href="mailto:{{ config.site_admin_email }}">{{ config.site_author
+                            }}</a>
+                        </p>
+
+                        <p>
+                            <b>Страниц на сайте:</b> {{ pages|length }}
+                        </p>
+                    </div><!-- /.box-body -->
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Сервер</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <p>
+                            <b>PHP версия:</b> {{ server.phpversion }}<br>
+                            <b>Memcache установлен:</b> {{ server.memcached|raw }}<br>
+                            <b>Использование памяти:</b> {{ server.memory }} <!--(peak {{ server.memory_max }})--><br>
+                            <b>Кеширование включено:</b> {{ server.cache_enable|raw }}
+                        </p>
+                    </div><!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+
+
+{%include "@admin/footer.twig" %}
